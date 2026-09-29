@@ -1,0 +1,372 @@
+<title>Mon comté 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one column. Headline, postal-code box with the riding's full projection right under it, then all 127 ridings by region. Neutral: no party is highlighted. */
+:root{
+  --bg:#F3F4F6; --surface:#FFFFFF; --fg:#15171C; --muted:#5A5F6D; --line:#D8DBE2; --soft:#E6E8EC;
+  --qs:#E8601C; --plq:#CF2229; --on-strong:#FFFFFF;
+  --accent:#1E6B57; --pq:#1F4E9E; --caq:#27A3D4; --pcq:#6A4C9C; --focus:#15171C;
+  --f-display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-data:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121419; --surface:#1B1E25; --fg:#ECEEF2; --muted:#9CA1AE; --line:#2E323C; --soft:#262A33;
+  --qs:#F07A3A; --plq:#E4474D; --on-strong:#FFFFFF;
+  --accent:#5BC2A2; --pq:#5B8BDB; --caq:#4CB9E4; --pcq:#9B80CC; --focus:#ECEEF2; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#121419; --surface:#1B1E25; --fg:#ECEEF2; --muted:#9CA1AE; --line:#2E323C; --soft:#262A33;
+  --qs:#F07A3A; --plq:#E4474D; --on-strong:#FFFFFF;
+  --accent:#5BC2A2; --pq:#5B8BDB; --caq:#4CB9E4; --pcq:#9B80CC; --focus:#ECEEF2; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--f-body)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(44px,10vw,80px);text-transform:uppercase}
+h2{font-size:clamp(28px,5vw,38px);text-transform:uppercase}
+p{margin:0}
+a{color:inherit;text-underline-offset:3px}
+.num,.pc{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.eyebrow{font:600 12px/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.meta{color:var(--muted);font-size:13px}
+header{display:grid;gap:14px}
+h1 .qs{color:var(--qs)}
+.lede{font-size:17px;max-width:60ch}
+
+/* finder */
+.finder{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.finder label{font:800 26px/1 var(--f-display);text-transform:uppercase}
+.frow{display:flex;gap:8px}
+.frow input{flex:1;min-width:0;font:600 24px/1 var(--f-data);letter-spacing:.08em;text-transform:uppercase;padding:14px 16px;border:2px solid var(--fg);border-radius:6px;background:var(--surface);color:var(--fg)}
+.frow input::placeholder{color:var(--muted);opacity:.6}
+.frow input:focus{outline:3px solid var(--accent);outline-offset:1px}
+.btn{font:700 15px/1 var(--f-body);padding:0 20px;border-radius:6px;border:2px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* answer */
+.answer{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.band{padding:14px 18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;background:var(--soft)}
+.band.QS{background:var(--qs);color:var(--on-strong)} .band.PLQ{background:var(--plq);color:var(--on-strong)}
+.band strong{font:800 36px/1 var(--f-display);text-transform:uppercase}
+.band span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.abody{padding:18px;display:grid;gap:12px}
+.abody h3{font-size:30px}
+.bars{display:grid;gap:6px;max-width:420px}
+.bar{display:grid;grid-template-columns:38px minmax(0,1fr) 40px;gap:8px;align-items:center;font-size:13px}
+.track{height:10px;background:var(--bg);border-radius:2px;overflow:hidden}
+.fill{height:100%}
+.bar .num{text-align:right}
+.split{display:grid;gap:6px}
+.split button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer}
+.split button:hover,.split button:focus-visible{border-color:var(--fg)}
+.split .pct{color:var(--muted);font-size:13px}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.links a{font-weight:600}
+
+.pill{display:inline-block;font:700 11px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;background:var(--soft);color:var(--fg);white-space:nowrap}
+.pill.QS{background:var(--qs);color:var(--on-strong)} .pill.PLQ{background:var(--plq);color:var(--on-strong)}
+
+/* list */
+.listhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px}
+.tabs{display:flex;gap:6px}
+.tabs button{font:600 13px/1 var(--f-body);padding:8px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rows li{border-bottom:1px solid var(--line);padding:14px 2px;display:grid;gap:6px}
+.rows li.grp{border-bottom:2px solid var(--fg);padding-top:28px;gap:4px}
+.rows li.grp h3{font-size:26px;text-transform:uppercase}
+.rows .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.rows .n{font-weight:700;font-size:17px}
+.rows .r{color:var(--muted);font-size:13px;margin-left:auto}
+.codes{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.codes .pc{font-size:13px;padding:3px 6px;border-radius:4px;background:var(--soft)}
+.codes .pc.part{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+.copyrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.copyrow .btn{padding:12px 16px}
+textarea#copyfall{width:100%;min-height:160px;font:13px/1.4 var(--f-data);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:10px}
+.method{display:grid;gap:12px}
+.method ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.fine{font-size:13px;color:var(--muted)}
+</style>
+<style>
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.lang{display:flex;gap:4px}
+.lang button{font:600 13px/1 var(--f-data);padding:7px 10px;border-radius:4px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.lang button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+h1 .ac{color:var(--accent)}
+.band.close{background:var(--fg);color:var(--bg)}
+.status{display:inline-block;font:700 11px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;background:var(--soft);color:var(--fg);white-space:nowrap}
+.status.close{background:var(--fg);color:var(--bg)}
+.minibar{display:flex;height:8px;border-radius:2px;overflow:hidden;background:var(--soft);max-width:420px}
+.minibar span{height:100%}
+.region-h{padding-top:26px;border-bottom:2px solid var(--fg)!important}
+.region-h h3{font-size:24px;text-transform:uppercase}
+.neutral{font-size:13px;padding:10px 12px;border-radius:6px;background:var(--soft)}
+.prefs{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.prefs h2{font-size:24px}
+.prow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:8px;align-items:end}
+@media (max-width:560px){.prow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.prow label{display:grid;gap:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.prow select{font:600 16px/1 var(--f-body);padding:10px;border:1.5px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);min-width:0}
+.prow select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.linkbtn{font:600 13px/1 var(--f-body);padding:11px 12px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.pick{display:grid;gap:4px;padding:12px 14px;border-radius:6px;border:2px solid var(--accent)}
+.pick .eyebrow{color:var(--accent)}
+.pick strong{font:800 28px/1 var(--f-display)}
+.chip{font:600 12px/1 var(--f-body);padding:5px 8px;border-radius:4px;border:1.5px solid var(--accent);color:var(--fg);white-space:nowrap}
+.chip.none{border-color:var(--line);color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <p class="eyebrow" data-t="eyebrow"></p>
+      <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" lang="fr">FR</button><button type="button" data-lang="en" lang="en">EN</button></div>
+    </div>
+    <h1 data-t="h1" data-html></h1>
+    <p class="lede" data-t="lede"></p>
+    <p class="neutral" data-t="neutral"></p>
+  </header>
+
+  <section class="prefs" aria-labelledby="phead">
+    <h2 id="phead" data-t="prefHead"></h2>
+    <p class="meta" data-t="prefHint"></p>
+    <div class="prow">
+      <label><span data-t="r1"></span><select id="p1"></select></label>
+      <label><span data-t="r2"></span><select id="p2"></select></label>
+      <label><span data-t="r3"></span><select id="p3"></select></label>
+      <button type="button" class="linkbtn" id="pclear" data-t="clear"></button>
+    </div>
+  </section>
+
+  <section class="finder">
+    <label for="q" data-t="label"></label>
+    <form class="frow" id="form" autocomplete="off">
+      <input id="q" type="text" inputmode="text" maxlength="7" placeholder="H2S" aria-describedby="qhint">
+      <button class="btn" type="submit" data-t="go"></button>
+    </form>
+    <p class="meta" id="qhint" data-t="hint"></p>
+    <div class="answer" id="answer" aria-live="polite"></div>
+  </section>
+
+  <section style="display:grid;gap:14px">
+    <div class="listhead">
+      <h2 id="lhead"></h2>
+      <div class="tabs" role="group"><button type="button" data-f="ALL" aria-pressed="true" data-t="all"></button><button type="button" data-f="CLOSE" aria-pressed="false" data-t="closeTab"></button><button type="button" data-f="MINE" aria-pressed="false" data-t="mine" id="tabMine" hidden></button></div>
+    </div>
+    <p class="meta" data-t="dashed"></p>
+    <ol class="rows" id="rows"></ol>
+  </section>
+
+  <section class="method">
+    <h2 data-t="mhead"></h2>
+    <ul data-t="mlist" data-html></ul>
+    <p class="fine" data-t="fine" data-html></p>
+  </section>
+</div>
+
+<script>
+const DATA = __DATA__;
+const PC = __PC__;
+const R = DATA.ridings;
+const EQ = `<a href="https://www.electionsquebec.qc.ca/" target="_blank" rel="noopener">Élections Québec</a>`;
+const SRC = `<a href="https://qc125.com" target="_blank" rel="noopener">Qc125</a> (Philippe J. Fournier), <a href="https://github.com/essicolo/silatendancesemaintient" target="_blank" rel="noopener">silatendancesemaintient</a>, <a href="https://www.npmjs.com/package/canada-postal-codes" target="_blank" rel="noopener">canada-postal-codes</a>`;
+const REG_EN = {"Abitibi, Côte-Nord et Nord":"Abitibi, North Shore and North","Saguenay–Lac-Saint-Jean":"Saguenay–Lac-Saint-Jean","Bas-Saint-Laurent et Gaspésie":"Lower St. Lawrence and Gaspésie","Outaouais":"Outaouais","Laurentides et Lanaudière":"Laurentides and Lanaudière","Mauricie et Centre-du-Québec":"Mauricie and Centre-du-Québec","Capitale-Nationale":"Quebec City region","Chaudière-Appalaches":"Chaudière-Appalaches","Couronne nord":"North Shore suburbs","Laval":"Laval","Montréal ouest":"West Montreal","Montréal est":"East Montreal","Montérégie ouest":"West Montérégie","Montérégie est":"East Montérégie","Estrie":"Eastern Townships"};
+const T = {
+ fr:{
+  eyebrow:"Élections du Québec · lundi 5 octobre 2026",
+  h1:`Ton comté,<br><span class="ac">en chiffres</span>`,
+  lede:"Entre ton code postal pour voir la projection de tous les partis dans ta circonscription, et savoir si la course y est serrée. Les 127 circonscriptions sont listées plus bas.",
+  neutral:"Ce site n’appuie aucun parti. Il présente les projections publiques de Qc125 pour tous les partis, dans toutes les circonscriptions. Les indications « selon ton classement » viennent uniquement des choix que tu fais toi-même.",
+  label:"Ton code postal", go:"Voir",
+  hint:"Les 3 premiers caractères suffisent (ex. H2S). Si ton secteur touche plusieurs circonscriptions, entre le code complet (ex. H2S 2M6).",
+  all:"Toutes", closeTab:"Courses serrées",
+  dashed:"Les codes en pointillé ne couvrent qu’une partie de la circonscription : entre ton code complet pour vérifier.",
+  mhead:"D’où viennent les chiffres",
+  mlist:`<li>Les pourcentages sont les projections de vote de <a href="https://qc125.com/districts.htm" target="_blank" rel="noopener">Qc125</a> pour chaque circonscription (mises à jour du 27–28 septembre 2026).</li><li>Une course est dite « serrée » quand les deux premiers partis sont à moins de 5 points l’un de l’autre. Entre 5 et 10 points, un parti a « l’avantage ». Au-delà, il est « loin devant ».</li><li>L’étiquette Qc125 (solide, probable, enclin, pivot) reprend telle quelle l’évaluation du site.</li><li>Ton classement : on garde, dans ton ordre, le premier parti qui est en tête ou à moins de 10 points du parti en tête. Le site ne choisit rien à ta place : c’est ton propre classement qui décide, et la règle est la même pour tous les partis.</li>`,
+  fine:`Une projection n’est pas un sondage : les marges vont de ±5 à ±10 points par circonscription et les chiffres bougent jusqu’au vote. Le lien entre code postal et circonscription est approximatif (codes postaux de 2024, limites de la carte électorale 2026) : confirme ta circonscription officielle et ton bureau de vote auprès d’${EQ}. Données : ${SRC}. Projet indépendant, sans lien avec Qc125, Élections Québec ni aucun parti.`,
+  st:{close:"Course serrée",adv:"Avantage",far:"Loin devant"},
+  line:(r,a,b,g)=> g<5?`Lutte serrée entre ${a} et ${b} (${g} pt${g>1?"s":""} d’écart).`:g<10?`${a} a l’avantage sur ${b} (${g} points d’écart).`:`${a} est loin devant ${b} (${g} points d’écart).`,
+  heads:(n,f)=> f==="ALL"?`Les ${n} circonscriptions`:`${n} courses serrées`,
+  codes:"Codes postaux :", pctTitle:p=>`${p} % du secteur`,
+  proj:"Projection détaillée sur Qc125 →", confirm:"Ma circonscription officielle (Élections Québec) →", q125:l=>`Qc125 : ${l}`,
+  noteCode:(f,l)=>`Code postal <b class="pc">${f} ${l}</b>.`, noteFsa:f=>`Secteur <b class="pc">${f}</b>.`,
+  noteMissing:(f,l)=>`Code <b class="pc">${f} ${l}</b> absent de nos données : résultat pour le secteur <b class="pc">${f}</b>.`,
+  notePart:f=>`Secteur <b class="pc">${f}</b>, en partie dans cette circonscription.`,
+  splitN:n=>`${n} circonscriptions possibles`,
+  splitP:f=>`Le secteur <b class="pc">${f}</b> est partagé entre plusieurs circonscriptions. Entre ton code postal complet pour savoir laquelle est la tienne.`,
+  splitNote:"Le pourcentage indique la part des adresses du secteur dans chaque circonscription.",
+  errShortT:"Code incomplet", errShort:"Entre au moins les 3 premiers caractères de ton code postal, par exemple H2S.",
+  errQcT:"Hors Québec", errQc:"Les codes postaux du Québec commencent par G, H ou J.",
+  errUnkT:"Code inconnu", errUnk:f=>`Le secteur <b class="pc">${f}</b> n’existe pas dans nos données. Vérifie ton code postal.`,
+  example:"Exemple : secteur H1X. Entre ton propre code ci-dessus.",
+  pct:v=>`${v} %`,
+  prefHead:"Ton classement (optionnel)",
+  prefHint:"Classe jusqu’à 3 partis, dans ton ordre de préférence. Pour ta circonscription et pour chacune des 127, le site indique lequel de tes choix a une chance réaliste de gagner (en tête, ou à moins de 10 points du parti en tête). Tes choix ne sont envoyés nulle part.",
+  r1:"1er choix", r2:"2e choix", r3:"3e choix", none:"—", clear:"Effacer",
+  pickHead:"Selon ton classement",
+  pickYes:(p,k)=> k===1?`Ton 1er choix, ${p}, a une chance réaliste de gagner ici.`:`Ton ${k}e choix, ${p}, est le mieux placé de ton classement ici : tes choix mieux classés sont à 10 points ou plus du parti en tête.`,
+  pickNone:"Aucun de tes choix n’a de chance réaliste ici : ils sont tous à 10 points ou plus du parti en tête.",
+  chip:p=>`Ton choix : ${p}`, chipNone:"Aucun de tes choix",
+  mine:"Mes choix gagnables",
+  headsMine:n=>`${n} circonscriptions où un de tes choix peut gagner`
+ },
+ en:{
+  eyebrow:"Quebec election · Monday, October 5, 2026",
+  h1:`Your riding,<br><span class="ac">by the numbers</span>`,
+  lede:"Enter your postal code to see every party’s projection in your riding, and whether the race there is close. All 127 ridings are listed below.",
+  neutral:"This site does not support any party. It shows Qc125’s public projections for every party in every riding. The “based on your ranking” results come only from the choices you make yourself.",
+  label:"Your postal code", go:"Check",
+  hint:"The first 3 characters are enough (e.g. H2S). If your area covers several ridings, enter the full code (e.g. H2S 2M6).",
+  all:"All", closeTab:"Close races",
+  dashed:"Dashed codes only cover part of the riding: enter your full code to check.",
+  mhead:"Where the numbers come from",
+  mlist:`<li>Percentages are <a href="https://qc125.com/districts.htm" target="_blank" rel="noopener">Qc125</a>’s vote projections for each riding (updated September 27–28, 2026).</li><li>A race is “close” when the top two parties are less than 5 points apart. Between 5 and 10 points, one party “has the edge”. Beyond that, it is “well ahead”.</li><li>The Qc125 rating (safe, likely, leaning, toss-up) is the site’s own assessment, shown as is.</li><li>Your ranking: in your order, we keep the first party that leads or is within 10 points of the leader. The site chooses nothing for you: your own ranking decides, and the rule is the same for every party.</li>`,
+  fine:`A projection is not a poll: margins are ±5 to ±10 points per riding and the numbers will move until election day. Matching postal codes to ridings is approximate (2024 postal codes, 2026 electoral map boundaries): confirm your official riding and polling station with ${EQ}. Data: ${SRC}. Independent project, not affiliated with Qc125, Élections Québec or any party.`,
+  st:{close:"Close race",adv:"Has the edge",far:"Well ahead"},
+  line:(r,a,b,g)=> g<5?`Close race between ${a} and ${b} (${g}-point gap).`:g<10?`${a} has the edge over ${b} (${g}-point gap).`:`${a} is well ahead of ${b} (${g}-point gap).`,
+  heads:(n,f)=> f==="ALL"?`All ${n} ridings`:`${n} close races`,
+  codes:"Postal codes:", pctTitle:p=>`${p}% of the area`,
+  proj:"Detailed projection on Qc125 →", confirm:"My official riding (Élections Québec) →", q125:l=>`Qc125: ${l}`,
+  noteCode:(f,l)=>`Postal code <b class="pc">${f} ${l}</b>.`, noteFsa:f=>`Area <b class="pc">${f}</b>.`,
+  noteMissing:(f,l)=>`Code <b class="pc">${f} ${l}</b> is not in our data: result for area <b class="pc">${f}</b>.`,
+  notePart:f=>`Area <b class="pc">${f}</b>, partly in this riding.`,
+  splitN:n=>`${n} possible ridings`,
+  splitP:f=>`Area <b class="pc">${f}</b> is split between several ridings. Enter your full postal code to find yours.`,
+  splitNote:"The percentage is the share of the area’s addresses in each riding.",
+  errShortT:"Incomplete code", errShort:"Enter at least the first 3 characters of your postal code, for example H2S.",
+  errQcT:"Outside Quebec", errQc:"Quebec postal codes start with G, H or J.",
+  errUnkT:"Unknown code", errUnk:f=>`Area <b class="pc">${f}</b> is not in our data. Check your postal code.`,
+  example:"Example: area H1X. Enter your own code above.",
+  pct:v=>`${v}%`,
+  prefHead:"Your ranking (optional)",
+  prefHint:"Rank up to 3 parties in order of preference. For your riding and each of the 127, the site shows which of your choices has a realistic chance of winning (within 10 points of the leader). Your choices are not sent anywhere.",
+  r1:"1st choice", r2:"2nd choice", r3:"3rd choice", none:"—", clear:"Clear",
+  pickHead:"Based on your ranking",
+  pickYes:(p,k)=> k===1?`Your 1st choice, ${p}, has a realistic chance of winning here.`:`Your ${k===2?"2nd":"3rd"} choice, ${p}, is the best-placed of your ranking here: your higher choices are 10 points or more behind the leader.`,
+  pickNone:"None of your choices has a realistic chance here: they are all 10 points or more behind the leader.",
+  chip:p=>`Your pick: ${p}`, chipNone:"None of your picks",
+  mine:"My winnable picks",
+  headsMine:n=>`${n} ridings where one of your picks can win`
+ }
+};
+let L="fr", last=null, filter="ALL";
+const t=()=>T[L];
+const COLOR = {QS:"var(--qs)",PLQ:"var(--plq)",PQ:"var(--pq)",CAQ:"var(--caq)",PCQ:"var(--pcq)"};
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const reg = r => L==="en" ? (REG_EN[r.region]||r.region) : r.region;
+const lab = r => L==="en" ? r.label_en : r.label;
+const stKey = r => r.gap<5?"close":r.gap<10?"adv":"far";
+const top2 = r => Object.keys(r.shares).slice(0,2);
+const status = r => `<span class="status ${stKey(r)==="close"?"close":""}">${t().st[stKey(r)]}</span>`;
+const ART = {fr:{PQ:"le PQ",PLQ:"le PLQ",CAQ:"la CAQ",PCQ:"le PCQ",QS:"QS"}, en:{PQ:"the PQ",PLQ:"the PLQ",CAQ:"the CAQ",PCQ:"the PCQ",QS:"QS"}};
+const cap = x => x[0].toUpperCase()+x.slice(1);
+const line = r => { const [a,b]=top2(r); const s=t().line(r,ART[L][a],ART[L][b],r.gap); return cap(s); };
+const all = r => Object.entries(r.shares).map(([p,v])=>`${p} ${v}`).join(" · ");
+const minibar = r => `<div class="minibar" aria-hidden="true">${Object.entries(r.shares).map(([p,v])=>`<span style="width:${v}%;background:${COLOR[p]}"></span>`).join("")}</div>`;
+const answer = document.getElementById("answer");
+const PARTIES = ["CAQ","PCQ","PLQ","PQ","QS"]; // alphabetical, no default
+let PREF = [];
+try{ const s=JSON.parse(localStorage.getItem("pref")||"[]"); if(Array.isArray(s)) PREF=s.filter(p=>PARTIES.includes(p)).slice(0,3); }catch(e){}
+function pick(r){
+  if(!PREF.length) return null;
+  const lead=Math.max(...Object.values(r.shares));
+  for(let k=0;k<PREF.length;k++){ const v=r.shares[PREF[k]]; if(v!=null && lead-v<10) return {p:PREF[k], k:k+1}; }
+  return {p:null};
+}
+function pickBox(r){
+  const x=pick(r); if(!x) return "";
+  return `<div class="pick"><span class="eyebrow">${t().pickHead}</span>${x.p?`<strong>${x.p}</strong><span>${t().pickYes(ART[L][x.p],x.k)}</span>`:`<span>${t().pickNone}</span>`}</div>`;
+}
+function chip(r){ const x=pick(r); if(!x) return ""; return x.p?`<span class="chip">${t().chip(x.p)}</span>`:`<span class="chip none">${t().chipNone}</span>`; }
+const sels=[1,2,3].map(i=>document.getElementById("p"+i));
+function fillSelects(){
+  sels.forEach((s,i)=>{
+    const taken=PREF.filter((_,j)=>j!==i);
+    s.innerHTML=`<option value="">${t().none}</option>`+PARTIES.map(p=>`<option value="${p}"${PREF[i]===p?" selected":""}${taken.includes(p)?" disabled":""}>${p}</option>`).join("");
+    s.disabled = i>0 && !PREF[i-1];
+  });
+  document.getElementById("tabMine").hidden = !PREF.length;
+  if(!PREF.length && filter==="MINE"){ filter="ALL"; document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f==="ALL")); }
+}
+function readSelects(){
+  const v=sels.map(s=>s.value); PREF=[];
+  for(const p of v){ if(!p) break; if(!PREF.includes(p)) PREF.push(p); }
+  try{ localStorage.setItem("pref",JSON.stringify(PREF)); }catch(e){}
+  fillSelects(); renderList(); rerenderAnswer();
+}
+sels.forEach(s=>s.addEventListener("change",readSelects));
+document.getElementById("pclear").onclick=()=>{ sels.forEach(s=>s.value=""); readSelects(); };
+
+function bars(r){
+  return `<div class="bars">`+Object.entries(r.shares).map(([p,v])=>`<div class="bar"><b>${p}</b><div class="track"><div class="fill" style="width:${v*1.5}%;background:${COLOR[p]}"></div></div><span class="num">${t().pct(v)}</span></div>`).join("")+`</div>`;
+}
+function showRiding(i, note){
+  const r=R[i];
+  answer.innerHTML=`<div class="band ${stKey(r)==="close"?"close":""}"><strong>${esc(r.name)}</strong><span>${t().st[stKey(r)]}</span></div>
+  <div class="abody"><p class="meta">${esc(reg(r))} · ${esc(t().q125(lab(r)))}</p>
+  ${note?`<p class="meta">${note}</p>`:""}${pickBox(r)}${bars(r)}<p>${esc(line(r))}</p>
+  <div class="links"><a href="${r.url}" target="_blank" rel="noopener">${t().proj}</a><a href="https://www.electionsquebec.qc.ca/" target="_blank" rel="noopener">${t().confirm}</a></div></div>`;
+}
+function showSplit(fsa, list){
+  answer.innerHTML=`<div class="band"><strong>${esc(fsa)}</strong><span>${t().splitN(list.length)}</span></div>
+  <div class="abody"><p>${t().splitP(esc(fsa))}</p>
+  <div class="split">${list.map(([i,p])=>`<button type="button" data-i="${i}">${status(R[i])}<span>${esc(R[i].name)}</span><span class="pct num">${t().pct(p)}</span></button>`).join("")}</div>
+  <p class="meta">${t().splitNote}</p></div>`;
+  answer.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{ last={riding:+b.dataset.i, fsa}; showRiding(+b.dataset.i,t().notePart(esc(fsa))); });
+}
+function msg(title,text){ answer.innerHTML=`<div class="band"><strong>${title}</strong></div><div class="abody"><p>${text}</p></div>`; }
+function lookup(raw){
+  last={raw};
+  const c=raw.toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(!/^[A-Z]\d[A-Z]/.test(c)) return msg(t().errShortT,t().errShort);
+  if(!/^[GHJ]/.test(c)) return msg(t().errQcT,t().errQc);
+  const fsa=c.slice(0,3), e=PC.pc[fsa], sh=PC.fsa[fsa];
+  if(!e) return msg(t().errUnkT,t().errUnk(esc(fsa)));
+  const [maj,exc,alts,known]=e, ldu=c.slice(3,6);
+  if(ldu.length===3){
+    for(let i=0;i<exc.length;i+=6) if(exc.slice(i,i+3)===ldu) return showRiding(+exc.slice(i+3,i+6),t().noteCode(fsa,ldu));
+    for(let i=0;i<known.length;i+=3) if(known.slice(i,i+3)===ldu) return showRiding(maj,t().noteCode(fsa,ldu));
+  }
+  if(sh.length===1 || sh[0][1]>=95) return showRiding(sh[0][0], ldu.length===3?t().noteMissing(fsa,ldu):t().noteFsa(fsa));
+  showSplit(fsa, sh);
+}
+document.getElementById("form").addEventListener("submit",e=>{e.preventDefault(); lookup(document.getElementById("q").value);});
+
+const rows=document.getElementById("rows");
+function codes(r){ return r.fsa.map(([f,p])=>`<span class="pc${p<90?" part":""}" title="${t().pctTitle(p)}">${f}</span>`).join(""); }
+function item(i){const r=R[i];return `<li><div class="top">${status(r)}<span class="n">${esc(r.name)}</span>${chip(r)}</div>
+  ${minibar(r)}<p class="meta num">${esc(all(r))}</p><div class="codes"><span class="meta">${t().codes}</span>${codes(r)}</div></li>`;}
+function renderList(){
+  const ids=R.map((r,i)=>i).filter(i=>filter==="ALL"||(filter==="CLOSE"&&R[i].gap<5)||(filter==="MINE"&&pick(R[i])&&pick(R[i]).p));
+  document.getElementById("lhead").textContent= filter==="MINE"?t().headsMine(ids.length):t().heads(ids.length,filter);
+  let html="";
+  DATA.regions.forEach(g=>{ const sub=ids.filter(i=>R[i].region===g).sort((a,b)=>R[a].name.localeCompare(R[b].name,"fr")); if(!sub.length) return;
+    html+=`<li class="region-h"><h3>${esc(L==="en"?(REG_EN[g]||g):g)} · ${sub.length}</h3></li>`+sub.map(item).join(""); });
+  rows.innerHTML=html;
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b)); filter=b.dataset.f; renderList();});
+
+function rerenderAnswer(){
+  if(!last){ lookup("H1X"); last=null; answer.insertAdjacentHTML("afterbegin",`<p class="meta" style="padding:10px 18px 0">${t().example}</p>`); }
+  else if(last.riding!==undefined) showRiding(last.riding, t().notePart(esc(last.fsa)));
+  else lookup(last.raw);
+}
+function setLang(l, save){
+  L=l; document.documentElement.lang = l==="en"?"en-CA":"fr-CA";
+  document.title = l==="en" ? "My riding 2026" : "Mon comté 2026";
+  document.querySelectorAll("[data-t]").forEach(el=>{ const v=t()[el.dataset.t]; if(el.hasAttribute("data-html")) el.innerHTML=v; else el.textContent=v; });
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===l));
+  fillSelects(); renderList(); rerenderAnswer();
+  if(save){ try{ localStorage.setItem("lang", l); }catch(e){} try{ history.replaceState(null,"", l==="en"?"#en":location.pathname+location.search); }catch(e){} }
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang,true));
+let start="fr";
+try{ const s=localStorage.getItem("lang"); if(s==="en"||s==="fr") start=s; }catch(e){}
+if(location.hash==="#en") start="en"; else if(location.hash==="#fr") start="fr";
+setLang(start,false);
+</script>

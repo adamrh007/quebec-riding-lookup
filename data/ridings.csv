@@ -1,0 +1,128 @@
+id,name,region,incumbent_party,qc125_rating
+1001,Abitibi-Est,"Abitibi, Côte-Nord et Nord",I,PQ probable
+1002,Abitibi-Ouest,"Abitibi, Côte-Nord et Nord",CAQ,PQ probable
+1003,Acadie,Montréal ouest,PLQ,PLQ solide
+1004,Anjou–Louis-Riel,Montréal est,CAQ,PLQ probable
+1005,Argenteuil,Laurentides et Lanaudière,CAQ,PQ probable
+1006,Arthabaska-L’Érable,Mauricie et Centre-du-Québec,PQ,PQ enclin
+1007,Beauce-Nord,Chaudière-Appalaches,CAQ,PCQ solide
+1008,Beauce-Sud,Chaudière-Appalaches,CAQ,PCQ solide
+1009,Beauharnois,Montérégie ouest,CAQ,Pivot PQ/CAQ
+1010,Bellechasse,Chaudière-Appalaches,CAQ,PCQ solide
+1011,Berthier,Laurentides et Lanaudière,CAQ,PQ solide
+1012,Bertrand,Laurentides et Lanaudière,CAQ,PQ solide
+1013,Blainville,Couronne nord,CAQ,PQ enclin
+1014,Bonaventure,Bas-Saint-Laurent et Gaspésie,CAQ,PQ solide
+1015,Borduas,Montérégie est,CAQ,CAQ enclin
+1016,Bourassa-Sauvé,Montréal est,PLQ,PLQ solide
+1017,Camille-Laurin,Montréal est,PQ,PQ solide
+1018,Brome-Missisquoi,Estrie,CAQ,Pivot PLQ/PQ/CAQ
+1019,Chambly,Montérégie est,CAQ,Pivot PQ/CAQ
+1020,Champlain,Mauricie et Centre-du-Québec,CAQ,PQ enclin
+1021,Chapleau,Outaouais,CAQ,Pivot PLQ/CAQ
+1022,Charlesbourg,Capitale-Nationale,CAQ,PCQ enclin
+1023,Charlevoix–Côte-de-Beaupré,Capitale-Nationale,CAQ,PQ probable
+1024,Châteauguay,Montérégie ouest,CAQ,PLQ probable
+1025,Chauveau,Capitale-Nationale,CAQ,PCQ solide
+1026,Chicoutimi,Saguenay–Lac-Saint-Jean,PQ,PQ solide
+1027,Chomedey,Laval,I,PLQ solide
+1028,Chutes-de-la-Chaudière,Chaudière-Appalaches,CAQ,PCQ probable
+1029,Côte-du-Sud,Chaudière-Appalaches,CAQ,Pivot PQ/PCQ
+1030,D’Arcy-McGee,Montréal ouest,PLQ,PLQ solide
+1031,Deux-Montagnes,Couronne nord,CAQ,PQ probable
+1032,Drummond–Bois-Francs,Mauricie et Centre-du-Québec,CAQ,Pivot PQ/PCQ
+1033,Dubuc,Saguenay–Lac-Saint-Jean,I,PQ solide
+1034,Duplessis,"Abitibi, Côte-Nord et Nord",CAQ,PQ probable
+1035,Fabre,Laval,CAQ,PLQ probable
+1036,Gaspé,Bas-Saint-Laurent et Gaspésie,CAQ,PQ solide
+1037,Gatineau,Outaouais,CAQ,PLQ probable
+1038,Gouin,Montréal est,QS,QS solide
+1039,Granby,Estrie,CAQ,Pivot PQ/CAQ
+1040,Groulx,Couronne nord,CAQ,Pivot PQ/CAQ
+1041,Hochelaga-Maisonneuve,Montréal est,QS,QS enclin
+1042,Hull,Outaouais,CAQ,PLQ solide
+1043,Huntingdon,Montérégie ouest,CAQ,Pivot PLQ/PQ/CAQ
+1044,Iberville,Montérégie est,CAQ,Pivot PQ/CAQ
+1045,Îles-de-la-Madeleine,Bas-Saint-Laurent et Gaspésie,PQ,PQ solide
+1046,Jacques-Cartier,Montréal ouest,PLQ,PLQ solide
+1047,Jean-Lesage,Capitale-Nationale,QS,QS enclin
+1048,Jean-Talon,Capitale-Nationale,PQ,PQ probable
+1049,Jeanne-Mance–Viger,Montréal est,PLQ,PLQ solide
+1050,Daniel-Johnson,Estrie,CAQ,Pivot PQ/CAQ
+1051,Joliette,Laurentides et Lanaudière,CAQ,PQ solide
+1052,Jonquière,Saguenay–Lac-Saint-Jean,CAQ,PQ solide
+1053,L’Assomption,Laurentides et Lanaudière,CAQ,Pivot PQ/CAQ
+1054,La Peltrie,Capitale-Nationale,CAQ,PCQ solide
+1055,La Pinière,Montérégie ouest,PLQ,PLQ solide
+1056,La Prairie,Montérégie ouest,I,Pivot PQ/CAQ
+1057,Labelle,Laurentides et Lanaudière,CAQ,PQ solide
+1058,Lac-Saint-Jean,Saguenay–Lac-Saint-Jean,CAQ,PQ solide
+1059,LaFontaine,Montréal est,PLQ,PLQ solide
+1060,Pierre-Laporte,Montérégie ouest,I,PLQ solide
+1061,Laurier-Dorion,Montréal est,QS,Pivot PLQ/QS
+1062,Laval-des-Rapides,Laval,CAQ,PLQ probable
+1063,Laviolette–Saint-Maurice,Mauricie et Centre-du-Québec,CAQ,PQ enclin
+1064,Les Plaines,Couronne nord,CAQ,PQ enclin
+1065,Lévis,Chaudière-Appalaches,CAQ,PCQ enclin
+1066,Lotbinière-Frontenac,Chaudière-Appalaches,CAQ,PCQ probable
+1067,Louis-Hébert,Capitale-Nationale,CAQ,Pivot PQ/CAQ
+1068,Marguerite-Bourgeoys,Montréal ouest,PLQ,PLQ solide
+1069,Marie-Victorin,Montérégie est,CAQ,PQ solide
+1070,Marquette,Montréal ouest,PLQ,PLQ solide
+1071,Maskinongé,Mauricie et Centre-du-Québec,CAQ,PQ enclin
+1072,Masson,Laurentides et Lanaudière,CAQ,PQ enclin
+1073,Matane-Matapédia-Mitis,Bas-Saint-Laurent et Gaspésie,PQ,PQ solide
+1074,Maurice-Richard,Montréal est,QS,PQ enclin
+1075,Mégantic,Estrie,CAQ,Pivot PQ/CAQ/PCQ
+1076,Mercier,Montréal est,QS,QS solide
+1077,Mille-Îles,Laval,PLQ,PLQ solide
+1078,Mirabel,Couronne nord,CAQ,Pivot PQ/CAQ
+1079,Mont-Royal–Outremont,Montréal ouest,PLQ,PLQ solide
+1080,Montarville,Montérégie est,CAQ,Pivot PQ/CAQ
+1081,Montmorency,Capitale-Nationale,CAQ,PCQ probable
+1082,Nelligan,Montréal ouest,PLQ,PLQ solide
+1083,Nicolet-Bécancour,Mauricie et Centre-du-Québec,CAQ,Pivot PQ/CAQ/PCQ
+1084,Notre-Dame-de-Grâce,Montréal ouest,PLQ,PLQ solide
+1085,Orford,Estrie,I,PLQ enclin
+1086,Papineau,Outaouais,CAQ,Pivot PLQ/PQ/CAQ
+1087,Pointe-aux-Trembles,Montréal est,CAQ,PQ solide
+1088,Pontiac,Outaouais,PLQ,PLQ solide
+1089,Portneuf,Capitale-Nationale,CAQ,PCQ solide
+1090,Prévost,Laurentides et Lanaudière,CAQ,PQ solide
+1091,René-Lévesque,"Abitibi, Côte-Nord et Nord",CAQ,PQ enclin
+1092,Repentigny,Laurentides et Lanaudière,CAQ,Pivot PQ/CAQ
+1093,Richelieu,Montérégie est,CAQ,PQ probable
+1094,Richmond,Estrie,CAQ,Pivot PQ/CAQ
+1095,Rimouski,Bas-Saint-Laurent et Gaspésie,PCQ,PQ solide
+1096,Rivière-du-Loup–Témiscouata–Les Basques,Bas-Saint-Laurent et Gaspésie,CAQ,PQ probable
+1097,Robert-Baldwin,Montréal ouest,PLQ,PLQ solide
+1098,Roberval,Saguenay–Lac-Saint-Jean,CAQ,PQ solide
+1099,Rosemont,Montréal est,I,Pivot PQ/QS
+1100,Rousseau,Laurentides et Lanaudière,CAQ,PQ enclin
+1101,Rouyn-Noranda–Témiscamingue,"Abitibi, Côte-Nord et Nord",CAQ,PQ probable
+1102,Saint-François,Estrie,CAQ,PQ probable
+1103,Saint-Henri–Sainte-Anne,Montréal ouest,QS,Pivot PLQ/QS
+1104,Saint-Hyacinthe,Montérégie est,CAQ,PQ probable
+1105,Saint-Jean,Montérégie est,CAQ,PQ solide
+1106,Saint-Jérôme,Laurentides et Lanaudière,I,PQ probable
+1107,Saint-Laurent,Montréal ouest,I,PLQ solide
+1108,Sainte-Marie–Saint-Jacques,Montréal est,QS,QS probable
+1109,Sainte-Rose,Laval,CAQ,PLQ enclin
+1110,Sanguinet,Montérégie ouest,CAQ,PQ probable
+1111,Sherbrooke,Estrie,QS,Pivot PQ/QS
+1112,Soulanges,Montérégie ouest,CAQ,PLQ probable
+1113,Taillon,Montérégie est,CAQ,PQ solide
+1114,Taschereau,Capitale-Nationale,QS,QS enclin
+1115,Terrebonne,Couronne nord,PQ,PQ enclin
+1116,Trois-Rivières,Mauricie et Centre-du-Québec,CAQ,Pivot PQ/CAQ
+1117,Ungava,"Abitibi, Côte-Nord et Nord",CAQ,PQ enclin
+1118,Vachon,Montérégie est,CAQ,PQ probable
+1119,Vanier-Les Rivières,Capitale-Nationale,CAQ,PCQ enclin
+1120,Vaudreuil,Montérégie ouest,PLQ,PLQ solide
+1121,Verchères,Montérégie est,CAQ,PQ probable
+1122,Verdun,Montréal ouest,QS,PLQ enclin
+1123,Viau,Montréal est,PLQ,PLQ solide
+1124,Vimont-Auteuil,Laval,CAQ,PLQ probable
+1125,Westmount–Saint-Louis,Montréal ouest,PLQ,PLQ solide
+1126,Bellefeuille,Laurentides et Lanaudière,,PQ probable
+1127,Marie-Lacoste-Gérin-Lajoie,Mauricie et Centre-du-Québec,,Pivot PQ/CAQ/PCQ
